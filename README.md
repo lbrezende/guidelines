@@ -1,12 +1,15 @@
 
-# Princípios de escrita para Sass
+# Guia de estilos do Ministério da Saúde
+Esse guia foi escrito para definir padrões de escrita e arquitetura na hora de desenvolver as aplicações internas do Ministério da Saúde. Esses novos padrões tem como objetivo:
 
-Embora muitas pessoas pensem em Sass como apenas CSS, existem muitos desafios que precisam ser abordados se quisermos ser capazes de escrever o melhor código possível. Neste documento, vamos passar por alguns estilos de codificação que ajudarão você a compartilhar o código com os outros e evitar armadilhas comuns.
+* Tornar o código mais consistente;
+* Facilitar a manutenção;
+* Modularizar os componentes;
+* Aumentar a performance das aplicações.
 
-Esse guia de estilo de escrita não sugiu do nada, ele é tem como base o [Idiomatic SASS](https://github.com/anthonyshort/idiomatic-sass), que é uma adaptação do [Idiomatic CSS](https://github.com/necolas/idiomatic-css/tree/master/translations/pt-BR) originalmente escrito por [Nicolas Gallagher](https://github.com/necolas), mas sofreu algumas modificações para que apliquemos esse guia nos projetos do Ministério da Saúde.
+# Índice do conteúdo
 
-## Índice de conteúdo
-
+* [Introdução](#introducao)
 * [Princípio da Responsabilidade Única](#principio-da-responsabilidade-unica)
 * [DRY: Don't Repeat Yourself](#dry-dont-repeat-yourself)
 * [CSS Orientado a Objeto](#css-orientado-a-objeto)
@@ -30,11 +33,14 @@ Esse guia de estilo de escrita não sugiu do nada, ele é tem como base o [Idiom
    * [Diretórios](#diretorios)
    * [Dependências](#dependencias)
 
+## Introdução
+Esse guia de estilo não sugiu do nada, ele é tem como base o [Idiomatic Sass](https://github.com/anthonyshort/idiomatic-sass), que é uma adaptação do [Idiomatic CSS](https://github.com/necolas/idiomatic-css/tree/master/translations/pt-BR) originalmente escrito por [Nicolas Gallagher](https://github.com/necolas), mas passou por algumas modificações que serão aplicadas nos projetos do Ministério da Saúde.
+
 ## Princípio da Responsabilidade Única
-O **Princípio da Responsabilidade Única** é um dos princípios SOLID, que são uma série de cinco princípios introduzidos por Robert C. Martin, como boas práticas de design de software. O **Princípio da Responsabilidade Única**, foca na preocupação de que _uma classe tenha seu papel e venha desempenhar **somente ele** de forma eficiente_. ([SOLID](http://en.wikipedia.org/wiki/SOLID_%28object-oriented_design%29))
+O **Princípio da Responsabilidade Única** é um dos cinco princípios SOLID, introduzidos por [Robert C. Martin](http://pt.wikipedia.org/wiki/Robert_Cecil_Martin), como boas práticas do design de software. O **Princípio da Responsabilidade Única**, foca na preocupação de que _uma classe tenha seu papel e venha desempenhar **somente ele** de forma eficiente_. Ou seja: cada classe tem sua função. Se precisamos de outra função, precisamos de outra classe. ([SOLID](http://en.wikipedia.org/wiki/SOLID_%28object-oriented_design%29))
 
 ## DRY: Don't Repeat Yourself
-_Don't repeat yourself_ (Não repita a si mesmo) ou também conhecido pelo acrônimo **DRY**, é um conceito de programação que propõe que cada pedaço de conhecimento deve ter uma única representação livre de ambiguidades, e autoritária dentro de um sistema. ([DRY](http://pt.wikipedia.org/wiki/Don't_repeat_yourself))
+_Don't repeat yourself_ (Não repita a si mesmo) ou também conhecido pelo acrônimo **DRY**, é um conceito de programação que propõe que cada pedaço de código deve ter uma única representação livre de ambiguidades, e autoritária dentro de um sistema. Também segue como base o **Princípio da Responsabilidade Única**. ([DRY](http://pt.wikipedia.org/wiki/Don't_repeat_yourself))
 
 ## CSS Orientado a Objeto
 Um "objeto" CSS é um padrão visual de repetição que pode ser abstraído independentemente em um trecho de HTML, CSS e JavaScript. Esse objeto pode então ser reutilizado em diferentes partes do projeto e ainda possuir a mesma aparência. ([OOCSS](https://github.com/stubbornella/oocss/wiki))
