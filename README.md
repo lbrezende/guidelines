@@ -311,3 +311,7 @@ Todas as classes de nomes compostos devem ser separadas com um _hifén_ (`-`).
 // Bom
 .top-nav { ... } // Dash
 ```
+
+#### TL;DR
+
+Para alguns pode parecer um pouco feio e estranho utilizar **BEM**, mas vamos otimizar essa prática quando falarmos sobre [preprocessadores](#preprocessadores).
