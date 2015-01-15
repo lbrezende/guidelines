@@ -77,8 +77,8 @@ _Referência: [SOLID: Object Oriented Design](http://en.wikipedia.org/wiki/SOLID
 
 5. #### Inversão de Dependência
 
-  1. **Módulos de alto nível não devem depender de módulos de baixo nível**. Ambos devem depender de [abstrações](#criando-abstracoes).
-  2. **Abstrações não deve depender de detalhes**. Os detalhes que devem depender de abstrações.
+  * **Módulos de alto nível não devem depender de módulos de baixo nível**. Ambos devem depender de [abstrações](#criando-abstracoes).
+  * **Abstrações não deve depender de detalhes**. Os detalhes que devem depender de abstrações.
 
 ### Separar estrutura do estilo
 
