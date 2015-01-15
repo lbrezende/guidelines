@@ -1,4 +1,3 @@
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 # Guia de estilos do Ministério da Saúde
 Esse guia foi escrito para definir padrões de escrita e arquitetura na hora de desenvolver o front-end das aplicações do Ministério da Saúde. Esses novos padrões tem como objetivo:
 
@@ -9,40 +8,40 @@ Esse guia foi escrito para definir padrões de escrita e arquitetura na hora de 
 
 # Índice do conteúdo
 
-* [Introdução](#introducao)
-* [CSS Orientado a Objeto](#css-orientado-a-objeto)
-  * [Aplicando os princípios de SOLID](#aplicando-os-principios-de-solid)
-    1. [Responsabilidade Única](#responsabilidade-unica)
-    2. [Aberto / Fechado](#aberto-fechado)
-    3. [Substituição de Liskov](#substituicao-de-liskov-e-segregação-de-interfaces)
-    4. [Segregação de Interfaces](#segregação-de-interfaces)
-    5. [Inversão de Dependência](#inversao-de-dependencia)
-  * [Separar estrutura do estilo](#separar-estrutura-do-estilo)
-  * [Separar recipiente do conteúdo](#separar-recipiente-do-conteudo)
-* [DRY: Don't Repeat Yourself](#dry-dont-repeat-yourself)
-* [Convenção de nomenclaturas](#convencao-de-nomenclaturas)
-  * [Criando abstrações](#criando-abstracoes)
-  * [Metodologia BEM](#bem-block-element-modifier)
-  * [Classes de nomes compostos](#classes-de-nomes-compostos)
-* [Padrões de escrita do CSS](#padroes-de-escrita-do-css)
-  * [Indenteção](#indentacao)
-  * [Seletores](#seletores)
-  * [Propriedades](#propriedades)
-    * [Ordenação](#ordenacao)
-* [Arquitetura da aplicação](#arquitetura-da-aplicacao)
-  * [Metodologias aplicadas](#metodologias-aplicadas)
-  * [Organização dos arquivos](#organizacao-dos-arquivos)
-* [Preprocessadores](#preprocessadores)
-  * [Aninhamento](#aninhamento)
-  * [Variáveis](#variaveis)
-  * [Funções](#funcoes)
-  * [Mixins](#mixins)
-  * [Extends](#extends)
-  * [Operadores](#operadores)
-* [Componentes](#componentes)
-  * [Namespacing](#namespacing)
-  * [Arquitetura dos componentes](#arquitetura-dos-componentes)
-  * [Pontos de entrada](#pontos-de-entrada)
+* Introdução
+* CSS Orientado a Objeto
+  * Aplicando os princípios de SOLID
+      * Responsabilidade Única
+      * Aberto / Fechado
+      * Substituição de Liskov
+      * Segregação de Interfaces
+      * Inversão de Dependência
+  * Separar estrutura do estilo
+  * Separar recipiente do conteúdo
+* DRY: Don't Repeat Yourself
+* Convenção de nomenclaturas
+  * Criando abstrações
+  * Metodologia BEM
+  * Classes de nomes compostos
+* Padrões de escrita do CSS
+  * Indenteção
+  * Seletores
+  * Propriedades
+    * Ordenação
+* Arquitetura da aplicação
+  * Metodologias aplicadas
+  * Organização dos arquivos
+* Preprocessadores
+  * Aninhamento
+  * Variáveis
+  * Funções
+  * Mixins
+  * Extends
+  * Operadores
+* Componentes
+  * Namespacing
+  * Arquitetura dos componentes
+  * Pontos de entrada
 
 ## Introdução
 
@@ -97,7 +96,7 @@ Separar estrutura do estilo significa definir padrões visuais que se repetem, c
 }
 ```
 
-<sup>_**Princípio SOLID:** [Responsabilidade Única](#responsabilidade-unica)_</sup>
+<sup>_**Princípio SOLID:** Responsabilidade Única_</sup>
 
 Em seguida criamos os modificadores para tratar o estilo desse botão:
 
@@ -117,7 +116,7 @@ Em seguida criamos os modificadores para tratar o estilo desse botão:
 }
 ```
 
-<sup>_**Princípios SOLID:** [Aberto/Fechado](#aberto-fechado) e [Substituição de Liskov](#substituicao-de-liskov-e-segregação-de-interfaces)_</sup>
+<sup>_**Princípios SOLID:** Aberto/Fechado e Substituição de Liskov_</sup>
 
 E aplicando no nosso markup fica:
 
@@ -160,7 +159,7 @@ Isso significa que um objeto deve ter a mesma aparência, não importa onde voc�
 </div>
 ```
 
-<sup>_**Princípios SOLID:** [Segregação de Interfaces](#segregação-de-interfaces)_</sup>
+<sup>_**Princípio SOLID:** Segregação de Interfaces_</sup>
 
 Isso nos dá a garantia que:
 
@@ -237,7 +236,7 @@ Dessa forma, se precisarmos alterar a cor para vermelho, o nome da classe contin
 }
 ```
 
-<sup>_**Princípio SOLID:** [Inversão de Dependência](#inversao-de-dependencia)_</sup>
+<sup>_**Princípio SOLID:** Inversão de Dependência_</sup>
 
 É importante usar uma convenção de nomenclatura consistente nos seletores para manter o código mais organizado, fácil de ler e de dar manutenção.
 
