@@ -1,5 +1,5 @@
 # Guia de estilos do Ministério da Saúde
-Esse guia foi escrito para definir padrões de escrita e arquitetura no desenvolvimento de front-end das aplicações do Ministério da Saúde. Esses novos padrões tem como objetivo:
+Esse guia foi escrito para definir padrões de escrita e arquitetura na hora de desenvolver o front-end das aplicações do Ministério da Saúde. Esses novos padrões tem como objetivo:
 
 * Tornar o código mais consistente;
 * Facilitar a manutenção;
@@ -9,17 +9,18 @@ Esse guia foi escrito para definir padrões de escrita e arquitetura no desenvol
 # Índice do conteúdo
 
 * [Introdução](#introducao)
-* [CSS Orientado a Objeto](#oocss-object-oriented-css)
+* [CSS Orientado a Objeto](#css-orientado-a-objeto)
+  * [Aplicando os princípios de SOLID](#aplicando-os-principios-de-solid)
+     1. [Responsabilidade Única](#responsabilidade-unica)
+     2. [Aberto / Fechado](#aberto-fechado)
+     3. [Substituição de Liskov](#substituicao-de-liskov-e-segregação-de-interfaces)
+     4. [Segregação de Interfaces](#segregação-de-interfaces)
+     5. [Inversão de Dependência](#inversao-de-dependencia)
   * [Separar estrutura do estilo](#separar-estrutura-do-estilo)
   * [Separar recipiente do conteúdo](#separar-recipiente-do-conteudo)
-* [Aplicando os princípios de SOLID](#aplicando-os-principios-de-solid)
-  * [Responsabilidade Única](#responsabilidade-unica)
-  * [Aberto / Fechado](#aberto-fechado)
-  * [Substituição de Liskov](#substituicao-de-liskov-e-segregação-de-interfaces)
-  * [Segregação de Interfaces](#segregação-de-interfaces)
-  * [Inversão de Dependência](#inversao-de-dependencia)
 * [DRY: Don't Repeat Yourself](#dry-dont-repeat-yourself)
 * [Convenção de nomenclaturas](#convencao-de-nomenclaturas)
+  * [Criando abstrações](#criando-abstracoes)
   * [Metodologia BEM](#bem-block-element-modifier)
   * [Classes de nomes compostos](#classes-de-nomes-compostos)
 * [Padrões de escrita do CSS](#padroes-de-escrita-do-css)
@@ -52,6 +53,33 @@ O _**CSS Orientado a Objeto**_ parte do conceito de que o _"objeto"_ CSS é um p
 
 _Referência: [OOCSS: Object Oriented CSS](https://github.com/stubbornella/oocss/wiki)_
 
+### Aplicando os princípios de SOLID
+
+**SOLID** é um acrônimo para _**Single responsibility, Open-closed, Liskov substitution, Interface segregation**_ e _**Dependency inversion**_. Este termo foi criado por [Robert C. Martin](http://pt.wikipedia.org/wiki/Robert_Cecil_Martin) para unir alguns padrões muito utilizados no design de software, que visam facilitar a manutenção, legibilidade e vida do nosso código.
+
+_Referência: [SOLID: Object Oriented Design](http://en.wikipedia.org/wiki/SOLID_%28object-oriented_design%29)_
+
+1. #### Responsabilidade Única
+ 
+  Uma classe deve **fazer apenas uma coisa, deve fazê-la bem e deve fazer somente ela**. No exemplo abaixo temos o objeto que define os padrões de um botão na nossa aplicação.
+
+2. #### Aberto / Fechado
+
+  Um objeto estará sempre **aberto para extensões** e **fechado para modificações**. Isso significa que quando um objeto é definido, não deverá mais ser alterado. Se em algum momento você precisar alterar seu objeto, é o caso de rever toda a estrutura do seu código. Ao invés de alterar seu objeto base, deve-se criar modificadores.
+
+3. #### Substituição de Liskov
+  
+  O princípio de substituição de Liskov define que **os objetos de uma determinada hierarquia podem ser substituídos por qualquer um dos seus subtipos**. Sendo assim a noção de subtipo passa a ser determinada pela noção de substituição. 
+
+4. #### Segregação de Interfaces
+
+  **Classes específicas são melhores do que uma classes genéricas**. Isso faz com que nosso código tenha mais coesão e o torna fácil de dar manutenção e de ser refatorado ou alterado.
+
+5. #### Inversão de Dependência
+
+  1. **Módulos de alto nível não devem depender de módulos de baixo nível**. Ambos devem depender de [abstrações](#criando-abstracoes).
+  2. **Abstrações não deve depender de detalhes**. Os detalhes que devem depender de abstrações.
+
 ### Separar estrutura do estilo
 
 Separar estrutura do estilo significa definir padrões visuais que se repetem, como `color` e `margin`, e atribuir a um objeto que terá como única responsabilidade cuidar daquela tarefa. Por exmplo, podemos criar uma classe `btn` que será responsável por cuidar da estrutura padrão de um botão:
@@ -62,10 +90,13 @@ Separar estrutura do estilo significa definir padrões visuais que se repetem, c
 .btn {
   border: 1px solid;
   display: inline-block;
+  font-size: 1.2em;
   margin: 1em 1.5em;
   padding: 1em;
 }
 ```
+
+<sup>_**Princípio SOLID:** [Responsabilidade Única](#responsabilidade-unica)_</sup>
 
 Em seguida criamos os modificadores para tratar o estilo desse botão:
 
@@ -84,6 +115,8 @@ Em seguida criamos os modificadores para tratar o estilo desse botão:
   color: #fff;
 }
 ```
+
+<sup>_**Princípios SOLID:** [Aberto/Fechado](#aberto-fechado) e [Substituição de Liskov](#substituicao-de-liskov-e-segregação-de-interfaces)_</sup>
 
 E aplicando no nosso markup fica:
 
@@ -126,59 +159,13 @@ Isso significa que um objeto deve ter a mesma aparência, não importa onde voc�
 </div>
 ```
 
+<sup>_**Princípios SOLID:** [Segregação de Interfaces](#segregação-de-interfaces)_</sup>
+
 Isso nos dá a garantia que:
 
 1. Todos `<h2>` sem classe terão a mesma aparência;
 2. Todos os elementos com a classe `post-tile` terão a mesma aparência;
 3. Você não vai precisar criar outra regra caso você precise que, em algum momento, `.my-object h2` tenha a mesma aparência que um `<h2>` normal.
-
-## Aplicando os princípios de SOLID
-
-**SOLID** é um acrônimo para _**Single responsibility, Open-closed, Liskov substitution, Interface segregation**_ e _**Dependency inversion**_. Este termo foi criado por [Robert C. Martin](http://pt.wikipedia.org/wiki/Robert_Cecil_Martin) para unir alguns padrões muito utilizados no design de software, que visam facilitar a manutenção, legibilidade e vida do nosso código.
-
-_Referência: [SOLID: Object Oriented Design](http://en.wikipedia.org/wiki/SOLID_%28object-oriented_design%29)_
-
-### Responsabilidade Única
-
-O _**Princípio da Responsabilidade Única**_, foca na preocupação de que _uma classe tenha seu papel e venha desempenhar **somente ele** de forma eficiente_. Ou seja: **cada classe tem sua função**. Se precisamos de outra função, precisamos de outra classe. Vejamos um exemplo simples em um sistema de grid:
-
-``` scss
-.row {
-  float: none;
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 100%;
-  width: 60em;
-}
-
-.row__col {
-  box-sizing: border-box;
-  float: left;
-  padding-left: .9375em;
-  padding-right: .9375em;
-  position: relative;
-  &:last-of-type {
-    float: right;
-  }
-}
-
-.row__col--1 { width: 8.3333%; }
-...
-.row__col--6 { width: 50%; }
-...
-.row__col--12 { width: 100%; }
-```
-
-Analisando o exemplo acima, temos três classes: `.row`, `.row__col` e `.row__col--$`. Cada uma dessas classes tem uma única responsabilidade:
-
-* `.row` é responsável por dividir o layout em linhas e delimitar a largura da página;
-* `.row__col` é responsável por determinar o comportamento padrão das colunas do grid, o posicionamento e espaçamento entre cada uma;
-* `.row__col--$` aqui temos os modificadores da coluna. Nesse caso, os modificadores são responsáveis por determinar qual a largura de cada uma das colunas do grid.
-
-### Aberto / Fechado
-### Substituição de Liskov
-### Segregação de Interfaces
-### Inversão de Dependência
 
 ## DRY: Don't Repeat Yourself
 
@@ -211,7 +198,7 @@ _Referência: [DRY: Don't Repeat Yourself](http://pt.wikipedia.org/wiki/Don't_re
 
 ## Convenção de Nomenclaturas
 
-Vamos criar uma classe para definir os estilo de uma lista de links:
+Criamos uma classe para definir os estilo de uma lista de links:
 
 ``` scss
 .link-blue {
@@ -231,7 +218,9 @@ O nome dessa classe passa a não fazer mais sentido, concorda? Além disso, no c
 
 Aumentando a dimensão desse problema, imagine uma aplicação onde se tem aproximadamente 200 casos de uso. Torna-se praticamente impossível dar manutenção em um problema tão simples.
 
-Pensando nisso o ideal é sempre dar nome a algo pela natureza **do que é**, ao invés do **que ele parece**.
+### Criando abstrações
+
+Pensando nisso o ideal é sempre melhor dar nome a algo pela natureza **do que é**, ao invés do **que ele parece**.
 
 ``` scss
 .link-primary {
@@ -246,6 +235,8 @@ Dessa forma, se precisarmos alterar a cor para vermelho, o nome da classe contin
   color: red;
 }
 ```
+
+<sup>_**Princípio SOLID:** [Inversão de Dependência](#inversao-de-dependencia)_</sup>
 
 É importante usar uma convenção de nomenclatura consistente nos seletores para manter o código mais organizado, fácil de ler e de dar manutenção.
 
@@ -342,234 +333,3 @@ Todas as classes de nomes compostos devem ser separadas com um _hifén_ (`-`).
 #### TL;DR
 
 Para alguns pode parecer um pouco feio e estranho utilizar **BEM**, mas vamos otimizar essa prática quando falarmos sobre [preprocessadores](#preprocessadores).
-
-<!--
-
-## Seletores
-* Use one discrete selector per line in multi-selector rulesets.
-* Quote attribute values in selectors, e.g., input[type="checkbox"].
-* Place the closing brace of a ruleset in the same column as the first character of the ruleset.
-* Separate each ruleset by a blank line.
-* Include a single space before the opening brace of a ruleset.
-
-## Properties
-* Include one declaration per line in a declaration block.
-* Use one level of indentation for each declaration.
-* Use lowercase and shorthand hex values, e.g., #aaa.
-* Use single or double quotes consistently. Preference is for double quotes, e.g., content: "".
-* Where allowed, avoid specifying units for zero-values, e.g., margin: 0.
-* Include a semi-colon at the end of the last declaration in a declaration block.
-* Include a space after each comma in comma-separated property or function values.
-
-### Ordering
-1. `$variable` should **always** appear at the top.
-2. `@extend` should always appear before properties. It's like extending a class in Ruby.
-3. `@include` should appear second. This allows the properties to override the mixins.
-4. Properties should appear after this, optionally grouped by type or sorted alphabetically.
-5. Mixins with content blocks should appear next. `@include someMixin { properties }`
-6. Selectors that target itself. `&.modifier`
-7. Child selectors appear last.
-
-The basic rule of thumb is at-rules, properties, then blocks.
-
-Here is an example of a well-formed selector:
-
-``` scss
-.selector-1,
-.selector-2,
-.selector-3[type="text"]  {
-  $bg: blue;
-  $fallback: green;
-
-  @extend .clearfix;
-  @include border-box;
-
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  display: block;
-  font-family: helvetica, arial, sans-serif;
-  color: #333;
-  background: #fff;
-  background: linear-gradient(#fff, rgba(0, 0, 0, 0.8));
-
-  @include after {
-    position: absolute;
-  }
-
-  &.selector--modifier {
-    background: red;
-  }
-
-  .selector__child {
-    display: none;
-  }
-}
-```
-
-## Nesting
-* Avoid nesting more than 2 deep. This is a sign of bad CSS as selectors become too specific.
-* Rulesets within selectors should be separated by a single line and follow the same rules as any other selector.
-
-## Indentation
-* Indentation should be 2 spaces
-
-## File Structure
-* Each logical module of code should belong in its own file. Avoiding putting multiple objects in the same file. This allows you to use the filesystem to navigate your Sass rather than relying on comment blocks.
-* Mixins/placeholders/functions should, if possible, belong in their own file.
-* Files should be named for the component they are housing. A `block-list` object will live in a `block-list.scss` file.
-
-## Functions
-* Functions should be prefix with a dash and a namespace: `-rg-columns`
-* The namespace can be dropped if it is a private function: `columns`
-* Functions should be documented using DocBlock or similar.
-
-## Mixins
-* Mixins should only be used when there are dynamic properties, otherwise use `@extend`
-* Mixins that output selectors should be capital-case: `@mixin GridBuilder`
-* Mixins that output only properties should be camel-case: `@mixin borderBox`
-* Mixins should be prefixed if they are part of a public module: `@mixin as-GridBuilder`
-* In general, mixins with logic should not be longer than ~50 lines just like any other programming language
-* Private mixins that are not used outside of the current file should be prefixed with a dash: `@mixin -gridHelper`
-* Avoid using more than 4 parameters. It is a sign that a mixin is too complex. When Sass adds hashes life will be easier.
-* Mixins should be documented
-
-``` scss
-// Loop through each breakpoint and build
-// classes for each using the breakpoint mixins
-// First breakpoint is no media query — mobile-first.
-//
-// @param {List} $breakpoints List of column breakpoints
-// @param {Boolean} $spacing Include spacing classes?
-// @param {Boolean} $visibility Include visibilty classes?
-// @param {Boolean} $layout Include layout classes?
-// @api private
-@mixin -rg-Breakpoints($breakpoints, $spacing: true, $visibility: true, $layout: true) {
-  @each $columns in $breakpoints {
-    @if index($breakpoints, $columns) == 1 {
-      @include -rg-BreakpointClasses($columns, $spacing, $visibility, $layout);
-    }
-    @else {
-      @include rg-from($columns) {
-        @include -rg-BreakpointClasses($columns, $spacing, $visibility, $layout);
-      }
-    }
-  }
-}
-```
-
-## Modules/Packages
-
-Sharing Sass code is becoming more important. Without the use of a proper module system in Sass
-we need to establish a few rules so that sharing code is consistent and behaviour is predictable.
-Sass packages are popping up in Bower and Github but there is no consistency in the way they
-are implemented.
-
-A few general rules:
-
-* Every module *must* have a namespace
-* Private functions and mixins should be prefixed with a dash: `@mixin -rg-gridUnit`
-* Importing a module should not render any selectors
-* Mixins/placholders/functions should be able to be imported separately `@import "rg-Grid/mixins"`
-* Avoid relying on global variables.
-* Use placeholder selectors whenever possible.
-* All global variables must be namespaced.
-
-### File Structure
-
-* Third-party, installed modules should always be placed in a `components` directory.
-* Local modules should live in a `local` directory adjacent to the `components` directory.
-* All images, fonts and other assets should live in an `assets` directory
-
-Example structure:
-
-```
-/module-name
-  /assets
-    /fonts
-    /images
-  /components
-    /responsive-grid
-    /clearfix
-    /animation
-  /local
-    /homepage
-  /lib
-    /mixins
-    /functions
-  bower.json
-  index.scss
-```
-
-### Namespacing
-
-* Every selector, placeholder, mixin and function that is imported should be namespaced
-* Namespaces should be short (2-5 characters) and suffixed with a dash: `rg-Grid`
-
-### Module Entry Point
-
-* Each module should have an `index.scss` file as the entry point: `@import "module-name/index"`.
-* The entry point file does not require an underscore in the file name as each module should be able to be compiled and used individually.
-* Importing this entry point file should not render anything in the output
-* There must be an **entry-point mixin named for that module**. eg. a `rg-Grid` module would have a `rg-Grid` mixin
-
-### Package Management
-
-* The preferred package manager for Sass packages at the moment is Bower.
-* Avoid registering packages in Bower whenever possible and instead rely on the Github shorthand syntax - `user/project` eg. `fonzie/responsive-grid`
-* All packages are installed into the `components` directory
-
-### Load Paths
-
-* A load path to the `components` directory is assumed.
-
-### Dependencies
-
-As every module does not output anything just by being imported, packages can safely import other packages
-without the fear that a file has already been imported. Because of this, dependencies can safely require
-their own dependencies.
-
-For example, a `Grid` package depends on a `Clearfix` package, but so does the `LayoutHelpers` package. Both
-of these packages can `@import "clearfix/index"` without fear that there will be two `.clearfix` classes in the output.
-
-It is assumed that the `components` directory is added as a load path, so packages can easily require their dependencies.
-
-
-## Definitions
-
-#### Object
-
-A single piece of the design, usually fairly small. This could be things like `.message`, `.block`, `.list`, `.post`.
-Objects should be independent. Think of them as lego blocks. Objects have "modifiers" and "children".
-
-#### Children
-
-If an "object" is the parent, any sub-parts of that object are considered its children. Children are only ever
-controlled by the object it belongs to. A `.message` object may have a title that it styles, `.message__title`,
-this would be referred to as a child element.
-
-#### Module
-
-A single piece of functionality that can be composed of CSS, mixins, functions and assets (such as images or fonts).
-A module has a single entry point and a single purpose and role. eg. A grid framework could be a module.
-
-#### Package
-
-When a module is shared with others via a package manager like Bower it will generally be referred to as a package.
-This means that the term "module" and "packages" are fairly interchangable.
-
-#### Block
-
-This is another term for the concept of an "object".
-
-#### Element
-
-When referring to "objects" and "blocks", the word "element" is interchangable with the word "children".
-
-#### Modifier
-
-"Objects" may be modified in a way that changes their style in small ways, think of them as themes or alternative
-styles. For example, a `.list` object may have a `.list--small` modifier to make the text smaller.
-
-
--->
