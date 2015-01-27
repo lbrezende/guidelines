@@ -45,7 +45,7 @@ Esse guia foi escrito para definir padrões de escrita e arquitetura no desenvol
 
 ## Introdução
 
-Esse guia de estilo tem como base [uma série de referências](https://github.com/filipesf/ms-guidelines#refer%C3%AAncias), com algumas modificações que serão feitas de acordo com as necessidades dos projetos do Ministério da Saúde.
+Esse guia de estilo tem como base [uma série de referências](#refer%C3%AAncias), com algumas modificações que serão feitas de acordo com as necessidades dos projetos do Ministério da Saúde.
 
 ## CSS Orientado a Objeto
 
