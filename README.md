@@ -167,28 +167,7 @@ Isso nos dá a garantia que:
 
 _**Não repita a si mesmo**_ ou também conhecido pelo acrônimo **DRY**, é um conceito que busca reduzir a duplicação de código e os problemas de manutenção resultantes. **DRY** tem como base o **Princípio da Responsabilidade Única**.
 
-Com a chegada dos preprocessadores esse conceito se tornou muito mais fácil de ser aplicado no front-end. Por exemplo:
-
-``` scss
-// Antes dos preprocessadores e DRY:
-.form__input {
-  border: 1px solid #333
-  color: #333;
-  padding: .5em;
-}
-
-// Aplicando Sass e DRY:
-$form-input-color: #333;
-
-.form__input {
-  border: 1px solid $form-input-color
-  color: $form-input-color;
-  padding: .5em;
-}
-```
-
-Dessa forma, podemos aplicar a variável `$form-input-color` em qualquer parte do projeto que terá exatamente o mesmo valor. E caso seja preciso manutenção, basta alterar o valor dessa variável.
-
+Com a chegada dos preprocessadores esse conceito se tornou muito mais fácil de ser aplicado no front-end. Falaremos mais sobre DRY em _preprocessadores_.
 
 ## Convenção de Nomenclaturas
 
