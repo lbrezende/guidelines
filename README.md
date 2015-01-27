@@ -1,10 +1,10 @@
 # Guia de estilos do Ministério da Saúde
-Esse guia foi escrito para definir padrões de escrita e arquitetura na hora de desenvolver o front-end das aplicações do Ministério da Saúde. Esses novos padrões tem como objetivo:
+Esse guia foi escrito para definir padrões de escrita e arquitetura no desenvolviimento do front-end das aplicações do Ministério da Saúde. Esses novos padrões tem como objetivo:
 
 * Tornar o código mais consistente;
 * Facilitar a manutenção;
 * Modularizar os componentes;
-* Aumentar a performance das aplicações.
+* Melhorar a performance das aplicações.
 
 # Índice do conteúdo
 
@@ -45,22 +45,18 @@ Esse guia foi escrito para definir padrões de escrita e arquitetura na hora de 
 
 ## Introdução
 
-Esse guia de estilo não sugiu do nada, ele tem como base o [Idiomatic Sass](https://github.com/anthonyshort/idiomatic-sass), que é uma adaptação do [Idiomatic CSS](https://github.com/necolas/idiomatic-css/tree/master/translations/pt-BR) originalmente escrito por [Nicolas Gallagher](https://github.com/necolas), mas com algumas modificações que serão aplicadas nos projetos do Ministério da Saúde.
+Esse guia de estilo tem como base o [Idiomatic CSS](https://github.com/necolas/idiomatic-css/tree/master/translations/pt-BR) originalmente escrito por [Nicolas Gallagher](https://github.com/necolas), com algumas modificações que serão aplicadas nos projetos do Ministério da Saúde.
 
 ## CSS Orientado a Objeto
 
 O _**CSS Orientado a Objeto**_ parte do conceito de que o _"objeto"_ CSS é um padrão visual de repetição que pode ser abstraído de forma independente. Esse objeto pode então ser reutilizado em diferentes partes do projeto e ainda possuir a mesma aparência.
 
-_Referência: [OOCSS: Object Oriented CSS](https://github.com/stubbornella/oocss/wiki)_
-
 ### Aplicando os princípios de SOLID
 
 **SOLID** é um acrônimo para _**Single responsibility, Open-closed, Liskov substitution, Interface segregation**_ e _**Dependency inversion**_. Este termo foi criado por [Robert C. Martin](http://pt.wikipedia.org/wiki/Robert_Cecil_Martin) para unir alguns padrões muito utilizados no design de software, que visam facilitar a manutenção, legibilidade e vida do nosso código.
 
-_Referência: [SOLID: Object Oriented Design](http://en.wikipedia.org/wiki/SOLID_%28object-oriented_design%29)_
-
 1. #### Responsabilidade Única
- 
+
   Uma classe deve **fazer apenas uma coisa, deve fazê-la bem e deve fazer somente ela**. No exemplo abaixo temos o objeto que define os padrões de um botão na nossa aplicação.
 
 2. #### Aberto / Fechado
@@ -68,8 +64,8 @@ _Referência: [SOLID: Object Oriented Design](http://en.wikipedia.org/wiki/SOLID
   Um objeto estará sempre **aberto para extensões** e **fechado para modificações**. Isso significa que quando um objeto é definido, não deverá mais ser alterado. Se em algum momento você precisar alterar seu objeto, é o caso de rever toda a estrutura do seu código. Ao invés de alterar seu objeto base, deve-se criar modificadores.
 
 3. #### Substituição de Liskov
-  
-  O princípio de substituição de Liskov define que **os objetos de uma determinada hierarquia podem ser substituídos por qualquer um dos seus subtipos**. Sendo assim a noção de subtipo passa a ser determinada pela noção de substituição. 
+
+  O princípio de substituição de Liskov define que **os objetos de uma determinada hierarquia podem ser substituídos por qualquer um dos seus subtipos**. Sendo assim a noção de subtipo passa a ser determinada pela noção de substituição.
 
 4. #### Segregação de Interfaces
 
@@ -193,8 +189,6 @@ $form-input-color: #333;
 
 Dessa forma, podemos aplicar a variável `$form-input-color` em qualquer parte do projeto que terá exatamente o mesmo valor. E caso seja preciso manutenção, basta alterar o valor dessa variável.
 
-_Referência: [DRY: Don't Repeat Yourself](http://pt.wikipedia.org/wiki/Don't_repeat_yourself)_
-
 
 ## Convenção de Nomenclaturas
 
@@ -289,10 +283,10 @@ A sigla **BEM** significa _Block_ (Bloco), _Element_ (Elemento), _Modifier_ (Mod
 
 #### Modifier
 
-* `Modifiers` são variações de um `Block` e/ou `Element`;
+* `Modifiers` são variações de um `Block` ou `Element`;
 * Eles alteram a aparência e/ou comportamento dos `Block` ou `Element` em que são aplicados;
 * Cada `Modifier` tem um nome e um valor;
-* Um `Modifier` tem por padrão dois _hiféns_ `--` que o separam do seu `Block` ou `Element`;
+* Um `Modifier` tem por padrão **dois _hiféns_** `--` que o separam do seu `Block` ou `Element`;
 * Vários `Modifier` podem ser aplicados simultaneamente.
 
 ``` scss
@@ -332,4 +326,195 @@ Todas as classes de nomes compostos devem ser separadas com um _hifén_ (`-`).
 
 #### TL;DR
 
-Para alguns pode parecer um pouco feio e estranho utilizar **BEM**, mas vamos otimizar essa prática quando falarmos sobre [preprocessadores](#preprocessadores).
+Para alguns pode parecer um pouco feio e estranho utilizar **BEM**, mas vamos otimizar essa prática quando falarmos sobre **preprocessadores**.
+
+***
+
+## Padrões de escrita do CSS
+
+Com os conceitos definidos, agora é preciso definir um padrão consistente de escrita para tonar a manutenção do código o menos complicado possível.
+
+### Comentários
+
+Para tornar ainda mais fácil a legibilidade e entendimento do nosso CSS, é essencial manter cada seção identificada e comentada. Abaixo seguem os padrões de comentários que devem ser utilizados.
+
+* Todo arquivo CSS deve ser identificado com um **cabeçalho**;
+
+``` scss
+//=====================================
+//
+//  Título: Descrição
+//
+//=====================================
+
+
+
+```
+
+* Cada **seção** de um arquivo também deve ser identificado com um título
+* Títulos de uma seção devem ser escritos em caixa alta e com um `#` no primeiro caractere;
+* Deve haver uma linha em branco entre o título e o conteúdo;
+
+``` scss
+//-------------------------------------
+//  #NAVIGATION
+//-------------------------------------
+
+.nav { ... }
+.nav__item { ... }
+```
+
+* Entre cada uma das seções deve haver uma **três linhas de separação**;
+
+``` scss
+//-------------------------------------
+//  #HEADER
+//-------------------------------------
+
+.header { ... }
+.header__logo { ... }
+
+
+
+//-------------------------------------
+//  #NAVIGATION
+//-------------------------------------
+
+.nav { ... }
+.nav__item { ... }
+```
+
+### Indenteção
+
+* Indentar sempre utilizando 2 espaços.
+
+``` scss
+// Ruim
+.my-selector {
+    property: value;
+
+    .sub-selector {
+        property: value;
+    }
+}
+
+// Bom
+.my-selector {
+  property: value;
+
+  .sub-selector {
+    property: value;
+  }
+}
+```
+
+### Seletores
+
+* Apenas um seletor por linha quando houver uma regra para multi-seletores;
+
+``` scss
+// Ruim
+html, body, div { ... }
+
+// Bom
+html,
+body,
+div { ... }
+```
+
+* Atributos de seletores sempre com **àspas duplas**. Ex: `input[type="checkbox"]`;
+* Ao fechar a chave `}` de um seletor, alinhe com a primeira coluna do seletor seguinte;
+
+``` scss
+// Ruim
+.selector {
+  property: value;
+  }
+
+.other-selector {
+  property: value;}
+
+// Bom
+.selector {
+  property: value;
+}
+
+.other-selector {
+  property: value;
+}
+```
+
+* Separar cada grupo de regras com uma linha em braco;
+
+``` scss
+// Ruim
+.nav {
+  ...
+}
+.nav__item {
+  ...
+}
+
+// Bom
+.nav {
+  ...
+}
+
+.nav__item {
+  ...
+}
+```
+
+### Propriedades
+
+* Manter propriedades relacionadas agrupadas;
+* Os grupos de propriedades devem estar em ordem alfabética;
+
+``` scss
+// Ruim
+.selector {
+  margin-top: 15px;
+  text-align: center;
+  width: auto;
+  font-size: 14px;
+  padding: 10px 20px;
+  margin-bottom: 20px;
+  text-decoration: none;
+  height: 20px;
+}
+
+// Bom
+.selector {
+  font-size: 14px;
+  text-align: center;
+  text-decoration: none;
+  margin-bottom: 20px;
+  margin-top: 15px;
+  padding: 10px 20px;
+  height: 20px;
+  width: auto;
+}
+```
+
+* Utilizar espaços em branco para facilitar a leitura;
+
+``` scss
+.selector {
+  font-size: 14px;
+  margin:    20px;
+  padding:   10px 20px;
+  height:    20px;
+  width:     auto;
+}
+```
+
+
+
+### Referências
+* [Idiomatic CSS](https://github.com/necolas/idiomatic-css/)
+* [CSS Guidelines](http://cssguidelin.es/)
+* [SOLID: Object Oriented Design](http://en.wikipedia.org/wiki/SOLID_%28object-oriented_design%29)
+* [OOCSS: Object Oriented CSS](https://github.com/stubbornella/oocss/wiki)
+* [DRY: Don't Repeat Yourself](http://pt.wikipedia.org/wiki/Don't_repeat_yourself)
+* [BEM Methodology](http://bem.info)
+* [Sass Guidelines](http://sass-guidelin.es/)
