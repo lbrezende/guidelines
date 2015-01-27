@@ -343,7 +343,7 @@ Para tornar ainda mais fácil a legibilidade e entendimento do nosso CSS, é ess
 .nav__item { ... }
 ```
 
-* Entre cada uma das seções deve haver uma **três linhas de separação**;
+* Entre cada uma das seções deve haver **três linhas de separação**;
 
 ``` scss
 //-------------------------------------
@@ -487,13 +487,22 @@ div { ... }
 }
 ```
 
-
-
 ### Referências
-* [Idiomatic CSS](https://github.com/necolas/idiomatic-css/)
-* [CSS Guidelines](http://cssguidelin.es/)
+
+Referências utilizadas na escrita desta documentação:
+
+#### Metodologias
+
 * [SOLID: Object Oriented Design](http://en.wikipedia.org/wiki/SOLID_%28object-oriented_design%29)
 * [OOCSS: Object Oriented CSS](https://github.com/stubbornella/oocss/wiki)
 * [DRY: Don't Repeat Yourself](http://pt.wikipedia.org/wiki/Don't_repeat_yourself)
-* [BEM Methodology](http://bem.info)
+
+#### Padrões de escrita
+
+* [Idiomatic CSS](https://github.com/necolas/idiomatic-css/)
+* [CSS Guidelines](http://cssguidelin.es/)
 * [Sass Guidelines](http://sass-guidelin.es/)
+
+#### Padrões de nomenclatura
+
+* [BEM Methodology](http://bem.info)
