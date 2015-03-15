@@ -1,5 +1,5 @@
-# Guia de estilos do Ministério da Saúde
-Esse guia foi escrito para definir padrões de escrita e arquitetura no desenvolviimento do front-end das aplicações do Ministério da Saúde. Esses novos padrões tem como objetivo:
+# Front-end Guidelines
+Esse guia tem como objetivo:
 
 * Tornar o código mais consistente;
 * Facilitar a manutenção;
