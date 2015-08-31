@@ -635,9 +635,25 @@ Um ótimo exemplo é uma classe como .hidden. Você a usaria quando quisesse faz
 ***
 
 
-## Preprocessadores
+## Preprocessadores CSS
 
-Em breve
+Preprocessadores CSS são scripts que recebem um CSS com uma semântica específica e efetua sua conversão para o CSS tradicional. Com ele é possível escrever o CSS com muito mais performance e manutenabilidade. 
+
+### SASS
+
+Utilizaremos o Sass como preprocessador. Sass é o mais maduro, estável, completo e profissional preprocessador CSS que existe. Alguns de seus benefícios:
+
+* Compatível com CSS tradicional;
+* Maior comunidade;
+* Baixa curva de aprendizado;
+* Recursos:
+  * Variables;
+  * Functions;
+  * Placeholders;
+  * Extends;
+  * Mixins;
+  * Partials;
+  * Imports.
 
 ### Aninhamento
 
