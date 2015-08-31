@@ -559,7 +559,7 @@ O ITCSS também sugere uma camada para ferramentas, caso você use um pré-proce
 ```
 
 ### BASE (base)
-Seguindo para baixo do triângulo invertido temos a camada base, uma casa para seletores para estilização básica destes elementos da nossa página. Aqui definimos a aparência de <a>, <blockquote>, <ul>, <h1> e todos os outros elementos HTML desejados.
+Seguindo para baixo do triângulo invertido temos a camada base, uma casa para seletores para estilização básica destes elementos da nossa página. Aqui definimos a aparência de `<a>`, `<blockquote>`, `<ul>`, `<h1>` e todos os outros elementos HTML desejados.
 
 ``` scss
 //-------------------------------------
