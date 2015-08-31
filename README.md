@@ -28,9 +28,6 @@ Esse guia tem como objetivo:
   * Seletores
   * Propriedades
     * Ordenação
-* Arquitetura da aplicação
-  * Metodologias aplicadas
-  * Organização dos arquivos
 * Preprocessadores
   * Aninhamento
   * Variáveis
@@ -38,6 +35,9 @@ Esse guia tem como objetivo:
   * Mixins
   * Extends
   * Operadores
+* Arquitetura da aplicação
+  * Metodologias aplicadas
+  * Organização dos arquivos  
 * Componentes
   * Namespacing
   * Arquitetura dos componentes
@@ -489,151 +489,6 @@ div { ... }
 
 ***
 
-## Arquitetura da Aplicação
-
-Além de organizado, o código criado para o `Style Guide` precisará ser eficiente. Conheça algumas curiosidades que podem motivar qualquer engenheiro frontend a ser louco por performance:
-
-* Usuários esperam páginas carregarem dois segundos. Depois do 3º há `40% de taxa de abandono`;
-* A Amazon notou que `100 milissegundos` de espera representam `1% de declínio das vendas`;
-* O Google perdeu 20% de lucratividade e tráfego de usuários por casa de um aumento de meio segundo no tempo de carregamento dos resultados;
-* O Google Maps ao reduzir `de 100kb para 80kb aumentou o tráfego em 10%` na primeira semana e `25% nas duas semanas seguintes`;
-* O time da Etsy percebeu um `aumento na taxa de rejeição em 12%` em dispositivos móveis quando adicionaram `160kb na página`;
-
-<sup>_UX Design - Casa do Código de Fabrício Teixeira_</sup>
-
-### ITCSS
-
-Escrever CSS é muito fácil, mas escrever CSS escalável, reutilizável, manutenível e de fácil compreensão não é assim tão fácil. 
-
-A ideia por trás do ITCSS é organizar seu CSS como se ele fosse um [triângulo invertido](https://hackpad-attachments.s3.amazonaws.com/hackpad.com_PIPWVUMv6rB_p.296099_1420807134466_itcss.jpg), formado por diversas camadas. 
-
-* O código deve ser organizado em **camadas**, da menos específica para a mais específica. Da base para o topo. Uma boa organização então seria:
-  * Configurações
-  * Ferramentas
-  * Genéricos
-  * Base
-  * Objetos
-  * Componentes
-  * “Trumps” ou Hacks
-
-**ITCSS - SETTINGS - Configurações (se usar pré-processador)**
-
-Estas configurações podem ser variáveis globais de cor e espaçamento ou então variáveis que ativam módulos do seu Style Guide.
-
-``` scss
-//-------------------------------------
-//  #SETTINGS - Configurações (se usar pré-processador)
-//-------------------------------------
-
-    $base-font-size: 14px;
-    $base-line-height: 24px;
-    $color-gray: #CCC;
-    $color-red: #FF0000;
-
-    $color-text: $color-gray;
-    $color-danger: $color-red;
-```
-
-**ITCSS - TOOLS - Ferramentas (se usar pré-processador)**
-
-O ITCSS também sugere uma camada para ferramentas, caso você use um pré-processador. Nela você colocará todos os seus mixins e funções. Coisas como px-to-rem ou font-face.
-``` scss
-//-------------------------------------
-//  #TOOLS - Ferramentas (se usar pré-processador)
-//-------------------------------------
-
-.exemplo {...};
-```
-**ITCSS - GENERICS - Estilos genéricos**
-
-É nesta camada que fica o código que deve definir regras muito genéricas. Além de usá-la para colocar um reset ou um normalize, você também pode escrever seletores bem abrangentes. Exemplo: Normalize.
-
-``` scss
-//-------------------------------------
-//  #GENERICS - Estilos genéricos
-//-------------------------------------
-
-* {
-    box-sizing: border-box;
-    outline-color: $color-brand;
-}
-```
-
-**ITCSS - BASE (base)**
-Seguindo para baixo do triângulo invertido temos a camada base, uma casa para seletores para estilização básica destes elementos da nossa página. Aqui definimos a aparência de `<a>`, `<blockquote>`, `<ul>`, `<h1>` e todos os outros elementos HTML desejados.
-
-``` scss
-//-------------------------------------
-//  #BASE (base)
-//-------------------------------------
-
-a {
-    color: $color-attention;
-}
-
-mark {
-    background-color: $color-highlight;
-    padding: 2px 4px;
-}
-```
-
-**ITCSS - OBJECTS (objetos)**
-
-Baseado nos princípios de CSS orientado a objetos, o ITCSS sugere uma camada para objetos.
-
-Objetos são pequenos pedaços de uma interface, normalmente padrões de design, que se repetem em todo o seu site. Objetos media, .button e .ui-list são alguns que se encaixam nesta camada.
-
-O ITCSS estabelece que devemos utilizar apenas classes a partir daqui. Um exemplo utilizando o padrão de nomenclatura BEM seria:
-
-``` scss
-//-------------------------------------
-//  #OBJECTS (objetos)
-//-------------------------------------
-
-.ui-list{
-    margin: 0;
-    padding: 0;
-    list-style: none;
-}
-
-    .ui-list__item {
-        padding: $spacing-unit;
-    }
-```
-**ITCSS - COMPONENTS (componentes)**
-
-Partes de uma interface com estilos mais definidos e específicos. É aqui que estilos para uma “lista de produtos” ou “cabeçalho principal” seriam encontrados.
-
-``` scss
-//-------------------------------------
-//  #COMPONENTS (componentes)
-//-------------------------------------
-
-.products-list {
-    border-top: 1px dashed $color-brand;
-}
-
-    .products-list__item {
-        border-bottom: 1px solid $color-brand;
-    }
-```
-**ITCSS - HACKS (ou trumps)**
-
-Um ótimo exemplo é uma classe como .hidden. Você a usaria quando quisesse fazer algo desaparecer. Segundo o ITCSS, aqui é perfeitamente aceitável que você use !important, já que estas classes devem ser utilizadas ativamente, não em reação a um problema de especificidade.
-
-``` scss
-//-------------------------------------
-//  #HACKS (ou trumps)
-//-------------------------------------
-
-.hidden {
-    display: none !important;
-}
-
-```
-
-***
-
 ## Preprocessadores CSS
 
 Preprocessadores CSS são scripts que recebem um CSS com uma semântica específica e efetua sua conversão para o CSS tradicional. Com ele é possível escrever o CSS com muito mais performance e manutenabilidade. 
@@ -658,7 +513,7 @@ Utilizaremos o Sass como preprocessador. Sass é o mais maduro, estável, comple
 
 **Aninhamento (Nesting)**
 
-Quando você escreve o HTML já deve ter notado que ele possui um aninhamento, uma hierarquia visual bastante clara. CSS, por outro lado, não oferece isso. Sass vai proporcionar que você aninhe seus seletores CSS de uma maneira que segue a mesma hierarquia visual do seu HTML. Aqui está um exemplo de alguns estilos típicos para uma navegação:
+Forma clara de definir a hierarquia entre elementos CSS.
 
 ``` scss
 // SCSS
@@ -904,6 +759,151 @@ O Sass entende quando um arquivo é uma partial e não gera um arquivo separado.
 @import "components/buttons";
 @import "components/carousel";
 @import "components/navigation";
+```
+
+***
+
+## Arquitetura da Aplicação
+
+Além de organizado, o código criado para o `Style Guide` precisará ser eficiente. Conheça algumas curiosidades que podem motivar qualquer engenheiro frontend a ser louco por performance:
+
+* Usuários esperam páginas carregarem dois segundos. Depois do 3º há `40% de taxa de abandono`;
+* A Amazon notou que `100 milissegundos` de espera representam `1% de declínio das vendas`;
+* O Google perdeu 20% de lucratividade e tráfego de usuários por casa de um aumento de meio segundo no tempo de carregamento dos resultados;
+* O Google Maps ao reduzir `de 100kb para 80kb aumentou o tráfego em 10%` na primeira semana e `25% nas duas semanas seguintes`;
+* O time da Etsy percebeu um `aumento na taxa de rejeição em 12%` em dispositivos móveis quando adicionaram `160kb na página`;
+
+<sup>_UX Design - Casa do Código de Fabrício Teixeira_</sup>
+
+### ITCSS
+
+Escrever CSS é muito fácil, mas escrever CSS escalável, reutilizável, manutenível e de fácil compreensão não é assim tão fácil. 
+
+A ideia por trás do ITCSS é organizar seu CSS como se ele fosse um [triângulo invertido](https://hackpad-attachments.s3.amazonaws.com/hackpad.com_PIPWVUMv6rB_p.296099_1420807134466_itcss.jpg), formado por diversas camadas. 
+
+* O código deve ser organizado em **camadas**, da menos específica para a mais específica. Da base para o topo. Uma boa organização então seria:
+  * Configurações
+  * Ferramentas
+  * Genéricos
+  * Base
+  * Objetos
+  * Componentes
+  * “Trumps” ou Hacks
+
+**ITCSS - SETTINGS - Configurações (se usar pré-processador)**
+
+Estas configurações podem ser variáveis globais de cor e espaçamento ou então variáveis que ativam módulos do seu Style Guide.
+
+``` scss
+//-------------------------------------
+//  #SETTINGS - Configurações (se usar pré-processador)
+//-------------------------------------
+
+    $base-font-size: 14px;
+    $base-line-height: 24px;
+    $color-gray: #CCC;
+    $color-red: #FF0000;
+
+    $color-text: $color-gray;
+    $color-danger: $color-red;
+```
+
+**ITCSS - TOOLS - Ferramentas (se usar pré-processador)**
+
+O ITCSS também sugere uma camada para ferramentas, caso você use um pré-processador. Nela você colocará todos os seus mixins e funções. Coisas como px-to-rem ou font-face.
+``` scss
+//-------------------------------------
+//  #TOOLS - Ferramentas (se usar pré-processador)
+//-------------------------------------
+
+.exemplo {...};
+```
+**ITCSS - GENERICS - Estilos genéricos**
+
+É nesta camada que fica o código que deve definir regras muito genéricas. Além de usá-la para colocar um reset ou um normalize, você também pode escrever seletores bem abrangentes. Exemplo: Normalize.
+
+``` scss
+//-------------------------------------
+//  #GENERICS - Estilos genéricos
+//-------------------------------------
+
+* {
+    box-sizing: border-box;
+    outline-color: $color-brand;
+}
+```
+
+**ITCSS - BASE (base)**
+Seguindo para baixo do triângulo invertido temos a camada base, uma casa para seletores para estilização básica destes elementos da nossa página. Aqui definimos a aparência de `<a>`, `<blockquote>`, `<ul>`, `<h1>` e todos os outros elementos HTML desejados.
+
+``` scss
+//-------------------------------------
+//  #BASE (base)
+//-------------------------------------
+
+a {
+    color: $color-attention;
+}
+
+mark {
+    background-color: $color-highlight;
+    padding: 2px 4px;
+}
+```
+
+**ITCSS - OBJECTS (objetos)**
+
+Baseado nos princípios de CSS orientado a objetos, o ITCSS sugere uma camada para objetos.
+
+Objetos são pequenos pedaços de uma interface, normalmente padrões de design, que se repetem em todo o seu site. Objetos media, .button e .ui-list são alguns que se encaixam nesta camada.
+
+O ITCSS estabelece que devemos utilizar apenas classes a partir daqui. Um exemplo utilizando o padrão de nomenclatura BEM seria:
+
+``` scss
+//-------------------------------------
+//  #OBJECTS (objetos)
+//-------------------------------------
+
+.ui-list{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+    .ui-list__item {
+        padding: $spacing-unit;
+    }
+```
+**ITCSS - COMPONENTS (componentes)**
+
+Partes de uma interface com estilos mais definidos e específicos. É aqui que estilos para uma “lista de produtos” ou “cabeçalho principal” seriam encontrados.
+
+``` scss
+//-------------------------------------
+//  #COMPONENTS (componentes)
+//-------------------------------------
+
+.products-list {
+    border-top: 1px dashed $color-brand;
+}
+
+    .products-list__item {
+        border-bottom: 1px solid $color-brand;
+    }
+```
+**ITCSS - HACKS (ou trumps)**
+
+Um ótimo exemplo é uma classe como .hidden. Você a usaria quando quisesse fazer algo desaparecer. Segundo o ITCSS, aqui é perfeitamente aceitável que você use !important, já que estas classes devem ser utilizadas ativamente, não em reação a um problema de especificidade.
+
+``` scss
+//-------------------------------------
+//  #HACKS (ou trumps)
+//-------------------------------------
+
+.hidden {
+    display: none !important;
+}
+
 ```
 
 ***
