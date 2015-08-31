@@ -646,15 +646,17 @@ Utilizaremos o Sass como preprocessador. Sass é o mais maduro, estável, comple
 * Maior comunidade;
 * Baixa curva de aprendizado;
 * Recursos:
-  * Variables;
-  * Functions;
-  * Placeholders;
-  * Extends;
-  * Mixins;
-  * Partials;
-  * Imports.
+  * Nesting (aninhamento);
+  * Variables (variáveis);
+  * Functions (funções);
+  * Placeholders (substituidores);
+  * Extends (extensões);
+  * Mixins (comportamentos);
+  * Operators (operadores)
+  * Partials (fragmentos);
+  * Imports (importações).
 
-**Aninhamento**
+**Aninhamento (Nesting)**
 
 Quando você escreve o HTML já deve ter notado que ele possui um aninhamento, uma hierarquia visual bastante clara. CSS, por outro lado, não oferece isso. Sass vai proporcionar que você aninhe seus seletores CSS de uma maneira que segue a mesma hierarquia visual do seu HTML. Aqui está um exemplo de alguns estilos típicos para uma navegação:
 
@@ -694,7 +696,7 @@ nav a {
 }
 ```
 
-**Variáveis**
+**Variáveis (variables)**
 
 Variáveis são uma forma de armazenar informações e reutilizar ao longo do projeto.
 
@@ -715,7 +717,7 @@ body {
 }
 ```
 
-**Funções**
+**Funções (functions)**
 
 Funções são utilizadas para realizar uma lógica e retornar um valor específico.
 
@@ -739,7 +741,7 @@ $grid-columns: 12;
 }
 ```
 
-**Mixins**
+**Mixins (comportamentos)**
 
 Mixins são utilizadas para definir blocos de código reutilizaveis. Também podemos passar parâmetros através de Mixins e definir lógicas como if, else, while, for, each, etc.
 
@@ -763,7 +765,7 @@ Mixins são utilizadas para definir blocos de código reutilizaveis. Também pod
 }
 ```
 
-**Placeholders**
+**Placeholders (substituidores)**
 
 São seletores que não são compilados e dependem do @extend para serem utilizados.
 
@@ -787,7 +789,7 @@ São seletores que não são compilados e dependem do @extend para serem utiliza
 
 ```
 
-**Extends**
+**Extends (extensões)**
 
 Extenções são utilizadas para extender uma classe à outra e herdar suas propriedades.
 
@@ -868,7 +870,7 @@ aside[role="complimentary"] {
 
 ### Partials e Imports
 
-**Partials**
+**Partials (fragmentos)**
 
 São arquivos prefixados com _ e são compilados junto com o arquivo principal.
 
@@ -888,7 +890,7 @@ styles
 |–– main.scss
 ```
 
-**Imports**
+**Imports (importações)**
 
 O Sass entende quando um arquivo é uma partial e não gera um arquivo separado.
 
