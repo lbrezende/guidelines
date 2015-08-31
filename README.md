@@ -78,7 +78,7 @@ O _**CSS Orientado a Objeto**_ parte do conceito de que o _"objeto"_ CSS é um p
 
 ### Separar estrutura do estilo
 
-Separar estrutura do estilo significa definir padrões visuais que se repetem, como `color` e `margin`, e atribuir a um objeto que terá como única responsabilidade cuidar daquela tarefa. Por exmplo, podemos criar uma classe `btn` que será responsável por cuidar da estrutura padrão de um botão:
+Separar estrutura do estilo significa definir padrões visuais que se repetem, como `color` e `margin`, e atribuir a um objeto que terá como única responsabilidade cuidar daquela tarefa. Por exemplo, podemos criar uma classe `btn` que será responsável por cuidar da estrutura padrão de um botão:
 
 ``` scss
 // objects/_buttons.scss
