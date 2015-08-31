@@ -727,7 +727,7 @@ aside[role="complimentary"] {
 
 **Partials (fragmentos)**
 
-São arquivos prefixados com _ e são compilados junto com o arquivo principal.
+São arquivos prefixados com _ e são compilados junto com o arquivo principal:
 
 ```
 styles
@@ -747,7 +747,7 @@ styles
 
 **Imports (importações)**
 
-O Sass entende quando um arquivo é uma partial e não gera um arquivo separado.
+O Sass entende quando um arquivo é uma partial e não gera um arquivo separado:
 
 ```
 // main.scss
