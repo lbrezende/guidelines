@@ -492,37 +492,53 @@ div { ... }
 
 Além de organizado, o código criado para o StyleGuide precisará ser eficiente. Conheça algumas curiosidades que podem motivar qualquer engenheiro frontend a ser louco por performance:
 
-* Usuários esperam páginas carregarem dois segundos. Depois do 3º há 40% de taxa de abandono;
-* A amazon notou que 100 milissegundos de espera representam 1% de declínio das vendas;
-* O google perdeu 20% de lucratividade e tráfego de usuários por casa de um aumento de meio segundo no tempo de carregamento dos resultados;
-* A akamai mostra em uma pesquisa recente como 75% dos compradores online que experienciam congelamento deixam de voltar ao site;
-* O google maps realizou um estudo e reduzir o peso da página de 100kb para 80kb aumentou o tráfego em 10%  na primeira semana e 25% nas duas semanas seguintes;
-* O time da Etsy percebeu um aumento na taxa de rejeição em 12% em dispositivos móveis quando adicionaram 160kb na página;
-* A Double Click removeu um redirect e aumentou 12% o acesso móvel;
-* A amazon verificou que ao comprimir jpg, reduziu a bateria utilizada para carregar o site em 20%;
-Fonte: UX Design - Casa do Código de Fabrício Teixeira
+* Usuários esperam páginas carregarem dois segundos. Depois do 3º há `40% de taxa de abandono`;
+* A Amazon notou que `100 milissegundos` de espera representam `1% de declínio das vendas`;
+* O time da Etsy percebeu um `aumento na taxa de rejeição em 12%` em dispositivos móveis quando adicionaram `160kb na página`;
+* A Double Click removeu `um redirect e aumentou 12% o acesso móvel`;
+* A amazon verificou que ao comprimir jpg, `reduziu em 20%` a bateria utilizada para carregar o site;
+* O Google perdeu 20% de lucratividade e tráfego de usuários por casa de um aumento de meio segundo no tempo de carregamento dos resultados;
+* A Akamai mostrou que `75% dos compradores online` que experienciam congelamento `deixam de voltar ao site`;
+* O Google Maps ao reduzir `de 100kb para 80kb aumentou o tráfego em 10%` na primeira semana e `25% nas duas semanas seguintes`;
+
+<sup>_UX Design - Casa do Código de Fabrício Teixeira_</sup>
 
 ### ITCSS
 
-Escrever CSS é muito fácil, mas escrever CSS escalável, reutilizável, manutenível e de fácil compreensão não é assim tão fácil.
- 
-Inverted Triangle architecture for CSS (ITCSS) é uma maneira de pensar arquiteturas CSS. Ele embasa suas decisões a partir de princípios criados e testados durante anos por Harry Roberts (@csswizardry).
+Escrever CSS é muito fácil, mas escrever CSS escalável, reutilizável, manutenível e de fácil compreensão não é assim tão fácil. 
+
+A ideia por trás do ITCSS é organizar seu CSS como se ele fosse um triângulo invertido, formado por diversas camadas. Essas camadas devem ser organizadas da mais genérica para a mais específica. Da base para o topo. Uma boa organização então seria:
 
 
 * O código deve ser organizado em **camadas**, da menos específica para a mais específica
 * A ordem para criação dos elementos deve ser:
-  * Configurações
-  * Ferramentas
-  * Genéricos
-  * Base
+  * Configurações (se usar pré-processador)
+  * Ferramentas (se usar pré-processador)
+  * Estilos genéricos
+  * Estilização básica de elementos HTML
   * Objetos
   * Componentes
-  * Hacks
+  * “Trumps” ou Hacks
 
 ``` scss
 //-------------------------------------
-//  #SETTINGS (configurações)
-// Deve conter as configurações principais do SCSS
+//  #SETTINGS - Configurações (se usar pré-processador)
+    Estas configurações podem ser variáveis globais de cor e espaçamento ou então variáveis que ativam módulos do seu Style Guide
+//-------------------------------------
+
+    $base-font-size: 14px;
+    $base-line-height: 24px;
+    $color-gray: #CCC;
+    $color-red: #FF0000;
+
+    $color-text: $color-gray;
+    $color-danger: $color-red;
+```
+
+``` scss
+//-------------------------------------
+//  #TOOLS - Ferramentas (se usar pré-processador)
+    O ITCSS também sugere uma camada para ferramentas, caso você use um pré-processador. Nela você colocará todos os seus mixins e funções. Coisas como px-to-rem ou font-face.
 //-------------------------------------
 
 .exemplo {...};
@@ -530,58 +546,81 @@ Inverted Triangle architecture for CSS (ITCSS) é uma maneira de pensar arquitet
 
 ``` scss
 //-------------------------------------
-//  #TOOLS (ferramentas)
-// Deve conter as configurações principais do SCSS
+//  #GENERICS - Estilos genéricos
+  É nesta camada que fica o código que deve definir regras muito genéricas. Além de usá-la para colocar um reset ou um normalize, você também pode escrever seletores bem abrangentes. Exemplo: Normalize.
 //-------------------------------------
 
-.exemplo {...};
-```
-
-``` scss
-//-------------------------------------
-//  #GENERICS (genéricos)
-// Deve conter as configurações principais do SCSS
-//-------------------------------------
-
-.exemplo {...};
+* {
+    box-sizing: border-box;
+    outline-color: $color-brand;
+}
 ```
 
 ``` scss
 //-------------------------------------
 //  #BASE (base)
-// Deve conter as configurações principais do SCSS
+    Seguindo para baixo do triângulo invertido temos a camada base, uma casa para seletores para estilização básica destes elementos da nossa página. Aqui definimos a aparência de <a>, <blockquote>, <ul>, <h1> e todos os outros elementos HTML desejados.
 //-------------------------------------
 
-.exemplo {...};
+a {
+    color: $color-attention;
+}
+
+mark {
+    background-color: $color-highlight;
+    padding: 2px 4px;
+}
 ```
 
 ``` scss
 //-------------------------------------
 //  #OBJECTS (objetos)
-// Deve conter as configurações principais do SCSS
+    Baseado nos princípios de CSS orientado a objetos, o ITCSS sugere uma camada para objetos.
+
+    Objetos são pequenos pedaços de uma interface, normalmente padrões de design, que se repetem em todo o seu site. Objetos media, .button e .ui-list são alguns que se encaixam nesta camada.
+
+    O ITCSS estabelece que devemos utilizar apenas classes a partir daqui. Um exemplo utilizando o padrão de nomenclatura BEM seria:
 //-------------------------------------
 
-.exemplo {...};
+.ui-list{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+    .ui-list__item {
+        padding: $spacing-unit;
+    }
 ```
 
 ``` scss
 //-------------------------------------
 //  #COMPONENTS (componentes)
-// Deve conter as configurações principais do SCSS
+    Partes de uma interface com estilos mais definidos e específicos. É aqui que estilos para uma “lista de produtos” ou “cabeçalho principal” seriam encontrados.
+
 //-------------------------------------
 
-.exemplo {...};
+.products-list {
+    border-top: 1px dashed $color-brand;
+}
+
+    .products-list__item {
+        border-bottom: 1px solid $color-brand;
+    }
 ```
 
 ``` scss
 //-------------------------------------
-//  #HACKS (hacks)
-// Deve conter as configurações principais do SCSS
+//  #HACKS (ou trumps)
+    Um ótimo exemplo é uma classe como .hidden. Você a usaria quando quisesse fazer algo desaparecer. Segundo o ITCSS, aqui é perfeitamente aceitável que você use !important, já que estas classes devem ser utilizadas ativamente, não em reação a um problema de especificidade.
 //-------------------------------------
 
-.exemplo {...};
+.hidden {
+    display: none !important;
+}
 ```
 
+<sup>_UX Design - Casa do Código de Fabrício Teixeira_</sup>
 
 
 
@@ -605,3 +644,7 @@ Referências utilizadas na escrita desta documentação:
 #### Padrões de nomenclatura
 
 * [BEM Methodology](http://bem.info)
+
+#### Arquitetura CSS
+
+* [ITCSS](http://itcss.io/)
