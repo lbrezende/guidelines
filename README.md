@@ -487,6 +487,106 @@ div { ... }
 }
 ```
 
+
+## Arquitetura da Aplicação
+
+Além de organizado, o código criado para o StyleGuide precisará ser eficiente. Conheça algumas curiosidades que podem motivar qualquer engenheiro frontend a ser louco por performance:
+
+* Usuários esperam páginas carregarem dois segundos. Depois do 3º há 40% de taxa de abandono;
+* A amazon notou que 100 milissegundos de espera representam 1% de declínio das vendas;
+* O google perdeu 20% de lucratividade e tráfego de usuários por casa de um aumento de meio segundo no tempo de carregamento dos resultados;
+* A akamai mostra em uma pesquisa recente como 75% dos compradores online que experienciam congelamento deixam de voltar ao site;
+* O google maps realizou um estudo e reduzir o peso da página de 100kb para 80kb aumentou o tráfego em 10%  na primeira semana e 25% nas duas semanas seguintes;
+* O time da Etsy percebeu um aumento na taxa de rejeição em 12% em dispositivos móveis quando adicionaram 160kb na página;
+* A Double Click removeu um redirect e aumentou 12% o acesso móvel;
+* A amazon verificou que ao comprimir jpg, reduziu a bateria utilizada para carregar o site em 20%;
+Fonte: UX Design - Casa do Código de Fabrício Teixeira
+
+### ITCSS
+
+Escrever CSS é muito fácil, mas escrever CSS escalável, reutilizável, manutenível e de fácil compreensão não é assim tão fácil.
+ 
+Inverted Triangle architecture for CSS (ITCSS) é uma maneira de pensar arquiteturas CSS. Ele embasa suas decisões a partir de princípios criados e testados durante anos por Harry Roberts (@csswizardry).
+
+```
+
+* O código deve ser organizado em **camadas**, da menos específica para a mais específica
+* A ordem para criação dos elementos deve ser:
+** Configurações
+** Ferramentas
+** Genéricos
+** Base
+** Objetos
+** Componentes
+** Hacks
+
+``` scss
+//-------------------------------------
+//  #SETTINGS (configurações)
+// Deve conter as configurações principais do SCSS
+//-------------------------------------
+
+.exemplo {...};
+```
+
+``` scss
+//-------------------------------------
+//  #TOOLS (ferramentas)
+// Deve conter as configurações principais do SCSS
+//-------------------------------------
+
+.exemplo {...};
+```
+
+``` scss
+//-------------------------------------
+//  #GENERICS (genéricos)
+// Deve conter as configurações principais do SCSS
+//-------------------------------------
+
+.exemplo {...};
+```
+
+``` scss
+//-------------------------------------
+//  #BASE (base)
+// Deve conter as configurações principais do SCSS
+//-------------------------------------
+
+.exemplo {...};
+```
+
+``` scss
+//-------------------------------------
+//  #OBJECTS (objetos)
+// Deve conter as configurações principais do SCSS
+//-------------------------------------
+
+.exemplo {...};
+```
+
+``` scss
+//-------------------------------------
+//  #COMPONENTS (componentes)
+// Deve conter as configurações principais do SCSS
+//-------------------------------------
+
+.exemplo {...};
+```
+
+``` scss
+//-------------------------------------
+//  #HACKS (hacks)
+// Deve conter as configurações principais do SCSS
+//-------------------------------------
+
+.exemplo {...};
+```
+
+
+
+
+
 ### Referências
 
 Referências utilizadas na escrita desta documentação:
