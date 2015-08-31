@@ -632,6 +632,9 @@ Um ótimo exemplo é uma classe como .hidden. Você a usaria quando quisesse faz
 
 ```
 
+***
+
+
 ## Preprocessadores
 
 Em breve
@@ -659,6 +662,8 @@ Em breve
 ### Operadores
 
 Em breve
+
+***
 
 ## Componentes
 
