@@ -508,7 +508,6 @@ Escrever CSS é muito fácil, mas escrever CSS escalável, reutilizável, manute
  
 Inverted Triangle architecture for CSS (ITCSS) é uma maneira de pensar arquiteturas CSS. Ele embasa suas decisões a partir de princípios criados e testados durante anos por Harry Roberts (@csswizardry).
 
-```
 
 * O código deve ser organizado em **camadas**, da menos específica para a mais específica
 * A ordem para criação dos elementos deve ser:
