@@ -490,16 +490,13 @@ div { ... }
 
 ## Arquitetura da Aplicação
 
-Além de organizado, o código criado para o StyleGuide precisará ser eficiente. Conheça algumas curiosidades que podem motivar qualquer engenheiro frontend a ser louco por performance:
+Além de organizado, o código criado para o `Style Guide` precisará ser eficiente. Conheça algumas curiosidades que podem motivar qualquer engenheiro frontend a ser louco por performance:
 
 * Usuários esperam páginas carregarem dois segundos. Depois do 3º há `40% de taxa de abandono`;
 * A Amazon notou que `100 milissegundos` de espera representam `1% de declínio das vendas`;
-* O time da Etsy percebeu um `aumento na taxa de rejeição em 12%` em dispositivos móveis quando adicionaram `160kb na página`;
-* A Double Click removeu `um redirect e aumentou 12% o acesso móvel`;
-* A amazon verificou que ao comprimir jpg, `reduziu em 20%` a bateria utilizada para carregar o site;
 * O Google perdeu 20% de lucratividade e tráfego de usuários por casa de um aumento de meio segundo no tempo de carregamento dos resultados;
-* A Akamai mostrou que `75% dos compradores online` que experienciam congelamento `deixam de voltar ao site`;
 * O Google Maps ao reduzir `de 100kb para 80kb aumentou o tráfego em 10%` na primeira semana e `25% nas duas semanas seguintes`;
+* O time da Etsy percebeu um `aumento na taxa de rejeição em 12%` em dispositivos móveis quando adicionaram `160kb na página`;
 
 <sup>_UX Design - Casa do Código de Fabrício Teixeira_</sup>
 
@@ -507,11 +504,10 @@ Além de organizado, o código criado para o StyleGuide precisará ser eficiente
 
 Escrever CSS é muito fácil, mas escrever CSS escalável, reutilizável, manutenível e de fácil compreensão não é assim tão fácil. 
 
-A ideia por trás do ITCSS é organizar seu CSS como se ele fosse um triângulo invertido, formado por diversas camadas. Essas camadas devem ser organizadas da mais genérica para a mais específica. Da base para o topo. Uma boa organização então seria:
+A ideia por trás do ITCSS é organizar seu CSS como se ele fosse um triângulo invertido, formado por diversas camadas. 
 
 
-* O código deve ser organizado em **camadas**, da menos específica para a mais específica
-* A ordem para criação dos elementos deve ser:
+* O código deve ser organizado em **camadas**, da menos específica para a mais específica. Da base para o topo. Uma boa organização então seria:
   * Configurações (se usar pré-processador)
   * Ferramentas (se usar pré-processador)
   * Estilos genéricos
@@ -520,9 +516,9 @@ A ideia por trás do ITCSS é organizar seu CSS como se ele fosse um triângulo 
   * Componentes
   * “Trumps” ou Hacks
 
-### Configurações
+### SETTINGS - Configurações (se usar pré-processador)
 
-Estas configurações podem ser variáveis globais de cor e espaçamento ou então variáveis que ativam módulos do seu Style Guide
+Estas configurações podem ser variáveis globais de cor e espaçamento ou então variáveis que ativam módulos do seu Style Guide.
 
 ``` scss
 //-------------------------------------
