@@ -520,10 +520,13 @@ A ideia por trás do ITCSS é organizar seu CSS como se ele fosse um triângulo 
   * Componentes
   * “Trumps” ou Hacks
 
+### Configurações
+
+Estas configurações podem ser variáveis globais de cor e espaçamento ou então variáveis que ativam módulos do seu Style Guide
+
 ``` scss
 //-------------------------------------
 //  #SETTINGS - Configurações (se usar pré-processador)
-    Estas configurações podem ser variáveis globais de cor e espaçamento ou então variáveis que ativam módulos do seu Style Guide
 //-------------------------------------
 
     $base-font-size: 14px;
@@ -535,19 +538,23 @@ A ideia por trás do ITCSS é organizar seu CSS como se ele fosse um triângulo 
     $color-danger: $color-red;
 ```
 
+### TOOLS - Ferramentas (se usar pré-processador)
+
+O ITCSS também sugere uma camada para ferramentas, caso você use um pré-processador. Nela você colocará todos os seus mixins e funções. Coisas como px-to-rem ou font-face.
 ``` scss
 //-------------------------------------
 //  #TOOLS - Ferramentas (se usar pré-processador)
-    O ITCSS também sugere uma camada para ferramentas, caso você use um pré-processador. Nela você colocará todos os seus mixins e funções. Coisas como px-to-rem ou font-face.
 //-------------------------------------
 
 .exemplo {...};
 ```
+### GENERICS - Estilos genéricos
+
+É nesta camada que fica o código que deve definir regras muito genéricas. Além de usá-la para colocar um reset ou um normalize, você também pode escrever seletores bem abrangentes. Exemplo: Normalize.
 
 ``` scss
 //-------------------------------------
 //  #GENERICS - Estilos genéricos
-  É nesta camada que fica o código que deve definir regras muito genéricas. Além de usá-la para colocar um reset ou um normalize, você também pode escrever seletores bem abrangentes. Exemplo: Normalize.
 //-------------------------------------
 
 * {
@@ -556,10 +563,12 @@ A ideia por trás do ITCSS é organizar seu CSS como se ele fosse um triângulo 
 }
 ```
 
+### BASE (base)
+Seguindo para baixo do triângulo invertido temos a camada base, uma casa para seletores para estilização básica destes elementos da nossa página. Aqui definimos a aparência de <a>, <blockquote>, <ul>, <h1> e todos os outros elementos HTML desejados.
+
 ``` scss
 //-------------------------------------
 //  #BASE (base)
-    Seguindo para baixo do triângulo invertido temos a camada base, uma casa para seletores para estilização básica destes elementos da nossa página. Aqui definimos a aparência de <a>, <blockquote>, <ul>, <h1> e todos os outros elementos HTML desejados.
 //-------------------------------------
 
 a {
@@ -572,14 +581,17 @@ mark {
 }
 ```
 
+### OBJECTS (objetos)
+
+Baseado nos princípios de CSS orientado a objetos, o ITCSS sugere uma camada para objetos.
+
+Objetos são pequenos pedaços de uma interface, normalmente padrões de design, que se repetem em todo o seu site. Objetos media, .button e .ui-list são alguns que se encaixam nesta camada.
+
+O ITCSS estabelece que devemos utilizar apenas classes a partir daqui. Um exemplo utilizando o padrão de nomenclatura BEM seria:
+
 ``` scss
 //-------------------------------------
 //  #OBJECTS (objetos)
-    Baseado nos princípios de CSS orientado a objetos, o ITCSS sugere uma camada para objetos.
-
-    Objetos são pequenos pedaços de uma interface, normalmente padrões de design, que se repetem em todo o seu site. Objetos media, .button e .ui-list são alguns que se encaixam nesta camada.
-
-    O ITCSS estabelece que devemos utilizar apenas classes a partir daqui. Um exemplo utilizando o padrão de nomenclatura BEM seria:
 //-------------------------------------
 
 .ui-list{
@@ -592,12 +604,13 @@ mark {
         padding: $spacing-unit;
     }
 ```
+### COMPONENTS (componentes)
+
+Partes de uma interface com estilos mais definidos e específicos. É aqui que estilos para uma “lista de produtos” ou “cabeçalho principal” seriam encontrados.
 
 ``` scss
 //-------------------------------------
 //  #COMPONENTS (componentes)
-    Partes de uma interface com estilos mais definidos e específicos. É aqui que estilos para uma “lista de produtos” ou “cabeçalho principal” seriam encontrados.
-
 //-------------------------------------
 
 .products-list {
@@ -608,22 +621,20 @@ mark {
         border-bottom: 1px solid $color-brand;
     }
 ```
+### HACKS (ou trumps)
+
+Um ótimo exemplo é uma classe como .hidden. Você a usaria quando quisesse fazer algo desaparecer. Segundo o ITCSS, aqui é perfeitamente aceitável que você use !important, já que estas classes devem ser utilizadas ativamente, não em reação a um problema de especificidade.
 
 ``` scss
 //-------------------------------------
 //  #HACKS (ou trumps)
-    Um ótimo exemplo é uma classe como .hidden. Você a usaria quando quisesse fazer algo desaparecer. Segundo o ITCSS, aqui é perfeitamente aceitável que você use !important, já que estas classes devem ser utilizadas ativamente, não em reação a um problema de especificidade.
 //-------------------------------------
 
 .hidden {
     display: none !important;
 }
+
 ```
-
-<sup>_UX Design - Casa do Código de Fabrício Teixeira_</sup>
-
-
-
 
 ### Referências
 
