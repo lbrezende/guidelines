@@ -504,14 +504,13 @@ Além de organizado, o código criado para o `Style Guide` precisará ser eficie
 
 Escrever CSS é muito fácil, mas escrever CSS escalável, reutilizável, manutenível e de fácil compreensão não é assim tão fácil. 
 
-A ideia por trás do ITCSS é organizar seu CSS como se ele fosse um triângulo invertido, formado por diversas camadas. 
-
+A ideia por trás do ITCSS é organizar seu CSS como se ele fosse um [triângulo invertido](http://en.wikipedia.org/wiki/SOLID_%28object-oriented_design%29), formado por diversas camadas. 
 
 * O código deve ser organizado em **camadas**, da menos específica para a mais específica. Da base para o topo. Uma boa organização então seria:
-  * Configurações (se usar pré-processador)
-  * Ferramentas (se usar pré-processador)
-  * Estilos genéricos
-  * Estilização básica de elementos HTML
+  * Configurações
+  * Ferramentas
+  * Genéricos
+  * Base
   * Objetos
   * Componentes
   * “Trumps” ou Hacks
