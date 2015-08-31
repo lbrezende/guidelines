@@ -515,7 +515,7 @@ A ideia por trás do ITCSS é organizar seu CSS como se ele fosse um [triângulo
   * Componentes
   * “Trumps” ou Hacks
 
-ITCSS - *SETTINGS* - Configurações (se usar pré-processador)
+**ITCSS - SETTINGS - Configurações (se usar pré-processador)**
 
 Estas configurações podem ser variáveis globais de cor e espaçamento ou então variáveis que ativam módulos do seu Style Guide.
 
@@ -533,7 +533,7 @@ Estas configurações podem ser variáveis globais de cor e espaçamento ou ent�
     $color-danger: $color-red;
 ```
 
-ITCSS - *TOOLS* - Ferramentas (se usar pré-processador)
+**ITCSS - TOOLS - Ferramentas (se usar pré-processador)**
 
 O ITCSS também sugere uma camada para ferramentas, caso você use um pré-processador. Nela você colocará todos os seus mixins e funções. Coisas como px-to-rem ou font-face.
 ``` scss
@@ -543,7 +543,7 @@ O ITCSS também sugere uma camada para ferramentas, caso você use um pré-proce
 
 .exemplo {...};
 ```
-ITCSS - *GENERICS* - Estilos genéricos
+**ITCSS - GENERICS - Estilos genéricos**
 
 É nesta camada que fica o código que deve definir regras muito genéricas. Além de usá-la para colocar um reset ou um normalize, você também pode escrever seletores bem abrangentes. Exemplo: Normalize.
 
@@ -558,7 +558,7 @@ ITCSS - *GENERICS* - Estilos genéricos
 }
 ```
 
-ITCSS - *BASE* (base)
+**ITCSS - BASE (base)**
 Seguindo para baixo do triângulo invertido temos a camada base, uma casa para seletores para estilização básica destes elementos da nossa página. Aqui definimos a aparência de `<a>`, `<blockquote>`, `<ul>`, `<h1>` e todos os outros elementos HTML desejados.
 
 ``` scss
@@ -576,7 +576,7 @@ mark {
 }
 ```
 
-ITCSS - *OBJECTS* (objetos)
+**ITCSS - OBJECTS (objetos)**
 
 Baseado nos princípios de CSS orientado a objetos, o ITCSS sugere uma camada para objetos.
 
@@ -599,7 +599,7 @@ O ITCSS estabelece que devemos utilizar apenas classes a partir daqui. Um exempl
         padding: $spacing-unit;
     }
 ```
-ITCSS - *COMPONENTS* (componentes)
+**ITCSS - COMPONENTS (componentes)**
 
 Partes de uma interface com estilos mais definidos e específicos. É aqui que estilos para uma “lista de produtos” ou “cabeçalho principal” seriam encontrados.
 
@@ -616,7 +616,7 @@ Partes de uma interface com estilos mais definidos e específicos. É aqui que e
         border-bottom: 1px solid $color-brand;
     }
 ```
-ITCSS - *HACKS* (ou trumps)
+**ITCSS - HACKS (ou trumps)**
 
 Um ótimo exemplo é uma classe como .hidden. Você a usaria quando quisesse fazer algo desaparecer. Segundo o ITCSS, aqui é perfeitamente aceitável que você use !important, já que estas classes devem ser utilizadas ativamente, não em reação a um problema de especificidade.
 
