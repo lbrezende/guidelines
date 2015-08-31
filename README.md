@@ -45,7 +45,7 @@ Esse guia tem como objetivo:
 
 ## Introdução
 
-Esse guia de estilo tem como base [uma série de referências](#refer%C3%AAncias), com algumas modificações que serão feitas de acordo com as necessidades dos projetos do Ministério da Saúde.
+Esse guia de estilo tem como base [uma série de referências](#refer%C3%AAncias) em frontend, para otimizar a cofidicação e manutenção das aplicações que o utilizam.
 
 ## CSS Orientado a Objeto
 
