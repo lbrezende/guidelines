@@ -401,7 +401,7 @@ body,
 div { ... }
 ```
 
-* Atributos de seletores sempre com **àspas duplas**. Ex: `input[type="checkbox"]`;
+* Atributos de seletores sempre com **aspas duplas**. Ex: `input[type="checkbox"]`;
 * Ao fechar a chave `}` de um seletor, alinhe com a primeira coluna do seletor seguinte;
 
 ``` scss
