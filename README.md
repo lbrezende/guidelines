@@ -634,7 +634,6 @@ Um ótimo exemplo é uma classe como .hidden. Você a usaria quando quisesse faz
 
 ***
 
-
 ## Preprocessadores CSS
 
 Preprocessadores CSS são scripts que recebem um CSS com uma semântica específica e efetua sua conversão para o CSS tradicional. Com ele é possível escrever o CSS com muito mais performance e manutenabilidade. 
@@ -655,29 +654,255 @@ Utilizaremos o Sass como preprocessador. Sass é o mais maduro, estável, comple
   * Partials;
   * Imports.
 
-### Aninhamento
+**Aninhamento**
 
-Em breve
+Quando você escreve o HTML já deve ter notado que ele possui um aninhamento, uma hierarquia visual bastante clara. CSS, por outro lado, não oferece isso. Sass vai proporcionar que você aninhe seus seletores CSS de uma maneira que segue a mesma hierarquia visual do seu HTML. Aqui está um exemplo de alguns estilos típicos para uma navegação:
 
-### Variáveis
+``` scss
+// SCSS
+nav {
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
 
-Em breve
+  li { display: inline-block; }
 
-### Funções
+  a {
+    display: block;
+    padding: 6px 12px;
+    text-decoration: none;
+  }
+}
 
-Em breve
+// CSS
+nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
 
-### Mixins
+nav li {
+  display: inline-block;
+}
 
-Em breve
+nav a {
+  display: block;
+  padding: 6px 12px;
+  text-decoration: none;
+}
+```
 
-### Extends
+**Variáveis**
 
-Em breve
+Variáveis são uma forma de armazenar informações e reutilizar ao longo do projeto.
 
-### Operadores
+``` scss
+// SCSS
+$font-stack:    Helvetica, sans-serif;
+$primary-color: #333;
 
-Em breve
+body {
+  font: 100% $font-stack;
+  color: $primary-color;
+}
+
+// CSS
+body {
+  font: 100% Helvetica, sans-serif;
+  color: #333;
+}
+```
+
+**Funções**
+
+Funções são utilizadas para realizar uma lógica e retornar um valor específico.
+
+``` scss
+// _functions.scss
+$grid-columns: 12;
+
+@function column($i) {
+  $col: percentage(1 / $grid-columns * $i);
+  @return $col;
+}
+
+// _grid.scss
+.col-6 {
+  width: column(6);
+}
+
+// main.css
+.col-6 {
+  width: 50%;
+}
+```
+
+**Mixins**
+
+Mixins são utilizadas para definir blocos de código reutilizaveis. Também podemos passar parâmetros através de Mixins e definir lógicas como if, else, while, for, each, etc.
+
+``` scss
+// SCSS
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+     -moz-border-radius: $radius;
+      -ms-border-radius: $radius;
+          border-radius: $radius;
+}
+
+.box { @include border-radius(10px); }
+
+// CSS
+.box {
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  border-radius: 10px;
+}
+```
+
+**Placeholders**
+
+São seletores que não são compilados e dependem do @extend para serem utilizados.
+
+``` scss
+// SCSS
+%clearfix {
+  &:before,
+  &:after {
+    content: " ";
+    display: table;
+  }
+
+  &:after { clear: both; }
+}
+
+.wrapper {
+  @extend %clearfix;
+  margin: 0 auto;
+  width: 960px;
+}
+
+```
+
+**Extends**
+
+Extenções são utilizadas para extender uma classe à outra e herdar suas propriedades.
+
+``` scss
+// SCSS
+.message {
+  border: 1px solid #ccc;
+  padding: 10px;
+  color: #333;
+}
+
+.success {
+  @extend .message;
+  border-color: green;
+}
+
+.error {
+  @extend .message;
+  border-color: red;
+}
+```
+
+Mas cuidado, o uso excessivo do @extend pode acabar com a semântica do código:
+
+``` scss
+.product .single_add_to_cart_button, .cart 
+.button, input.checkout-button.alt.button, 
+.shipping-calculator-form .button, 
+.multistep_step .button, #place_order.button, 
+.single-product 
+.single_add_to_cart_button.button.alt, 
+.woocommerce a.button, .woocommerce 
+button.button, .woocommerce input.button, 
+.woocommerce #respond input#submit, 
+.woocommerce #content input.button, 
+.woocommerce-page a.button, 
+.woocommerce-page button.button, 
+.woocommerce-page input.button, 
+.woocommerce-page #respond input#submit, 
+.woocommerce-page #content input.button {
+  background-color: #605f5e;
+}
+```
+
+**Operadores**
+
+Efetuar operações matemáticas em CSS é muito útil. O Sass conta com operadores matemáticos padrões como +, -, *, / e %. 
+
+``` scss
+//SASS
+.container { width: 100%; }
+
+article[role="main"] {
+  float: left;
+  width: (600px / 960px) * 100%;
+}
+
+aside[role="complimentary"] {
+  float: right;
+  width: (300px / 960px) * 100%;
+}
+
+//CSS
+.container {
+  width: 100%;
+}
+
+article[role="main"] {
+  float: left;
+  width: 62.5%;
+}
+
+aside[role="complimentary"] {
+  float: right;
+  width: 31.25%;
+}
+```
+
+### Partials e Imports
+
+**Partials**
+
+São arquivos prefixados com _ e são compilados junto com o arquivo principal.
+
+```
+styles
+|
+|–– utilities
+|   |–– _variables.scss
+|   |–– _functions.scss
+|   |–– _mixins.scss
+|
+|–– components
+|   |–– _buttons.scss
+|   |–– _carousel.scss
+|   |–– _navigation.scss
+|
+|–– main.scss
+```
+
+**Imports**
+
+O Sass entende quando um arquivo é uma partial e não gera um arquivo separado.
+
+```
+// main.scss
+
+@import "utilities/variables";
+@import "utilities/functions";
+@import "utilities/mixins";
+
+@import "components/buttons";
+@import "components/carousel";
+@import "components/navigation";
+```
 
 ***
 
