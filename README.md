@@ -487,6 +487,7 @@ div { ... }
 }
 ```
 
+***
 
 ## Arquitetura da Aplicação
 
@@ -631,7 +632,48 @@ Um ótimo exemplo é uma classe como .hidden. Você a usaria quando quisesse faz
 
 ```
 
-### Referências
+## Preprocessadores
+
+Em breve
+
+### Aninhamento
+
+Em breve
+
+### Variáveis
+
+Em breve
+
+### Funções
+
+Em breve
+
+### Mixins
+
+Em breve
+
+### Extends
+
+Em breve
+
+### Operadores
+
+Em breve
+
+## Componentes
+
+### Namespacing
+
+Em breve
+
+### Arquitetura dos componentes
+
+Em breve
+
+### Pontos de entrada
+
+Em breve
+
 
 Referências utilizadas na escrita desta documentação:
 
