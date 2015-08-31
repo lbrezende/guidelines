@@ -511,6 +511,7 @@ Inverted Triangle architecture for CSS (ITCSS) é uma maneira de pensar arquitet
 
 * O código deve ser organizado em **camadas**, da menos específica para a mais específica
 * A ordem para criação dos elementos deve ser:
+
 ** Configurações
 ** Ferramentas
 ** Genéricos
