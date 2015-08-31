@@ -363,7 +363,7 @@ Para tornar ainda mais fácil a legibilidade e entendimento do nosso CSS, é ess
 .nav__item { ... }
 ```
 
-### Indenteção
+### Indentação
 
 * Indentar sempre utilizando 2 espaços.
 
