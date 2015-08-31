@@ -679,6 +679,9 @@ Em breve
 
 Em breve
 
+***
+
+## Referências
 
 Referências utilizadas na escrita desta documentação:
 
